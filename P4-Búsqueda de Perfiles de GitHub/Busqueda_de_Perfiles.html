@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 4: Buscador de GitHub</title>
+    <!-- Vinculación de hoja de estilos externa -->
+    <link rel="stylesheet" href="Busqueda_de_Perfiles.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta-buscador">
+            <header>
+                <h1>Buscador de Perfiles GitHub</h1>
+                <p class="descripcion">Ingresa un nombre de usuario para ver su perfil y repositorios.</p>
+            </header>
+            
+            <form id="formulario-busqueda" class="formulario">
+                <div class="grupo-input">
+                    <label for="campo-usuario" class="etiqueta-oculta">Nombre de usuario</label>
+                    <input 
+                        type="text" 
+                        id="campo-usuario" 
+                        class="campo-texto" 
+                        placeholder="Ej: torvalds, facebook, google..." 
+                        autocomplete="off"
+                        aria-label="Nombre de usuario de GitHub"
+                    >
+                    <button type="submit" id="boton-buscar" class="boton">
+                        <span class="texto-boton">Buscar</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="contenedor-mensaje" class="mensaje" aria-live="polite"></div>
+
+            <section id="contenedor-perfil" class="perfil" aria-label="Perfil de usuario">
+                <article class="tarjeta-perfil">
+                    <div class="cabecera-perfil">
+                        <img id="avatar-usuario" class="avatar" src="" alt="Avatar del usuario">
+                        <div class="info-basica">
+                            <h2 id="nombre-usuario" class="nombre"></h2>
+                            <a id="enlace-github" class="enlace" href="#" target="_blank" rel="noopener noreferrer">@<span class="login"></span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="estadisticas">
+                        <div class="estadistica">
+                            <span class="valor" id="contador-repos">0</span>
+                            <span class="etiqueta">Repositorios</span>
+                        </div>
+                        <div class="estadistica">
+                            <span class="valor" id="contador-seguidores">0</span>
+                            <span class="etiqueta">Seguidores</span>
+                        </div>
+                        <div class="estadistica">
+                            <span class="valor" id="contador-seguidos">0</span>
+                            <span class="etiqueta">Seguidos</span>
+                        </div>
+                    </div>
+
+                    <div class="detalles-adicionales">
+                        <p id="bio-usuario" class="bio"></p>
+                        <p id="ubicacion-usuario" class="ubicacion"></p>
+                        <p id="empresa-usuario" class="empresa"></p>
+                        <p id="sitio-usuario" class="sitio"></p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="contenedor-repositorios" class="repositorios" aria-label="Repositorios del usuario">
+                <h3 class="titulo-seccion">Repositorios Públicos</h3>
+                <div id="lista-repositorios" class="lista-repositorios"></div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Vinculación de script externo con defer -->
+    <script src="Busqueda_de_Perfiles.js" defer></script>
+</body>
+</html>

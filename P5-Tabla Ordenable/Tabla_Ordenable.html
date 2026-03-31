@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 5: Tabla de Elementos</title>
+    <!-- Vinculación de hoja de estilos externa -->
+    <link rel="stylesheet" href="Tabla_Ordenable.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta-principal">
+            <header>
+                <h1>Gestión de Elementos</h1>
+                <p class="descripcion">Administra, filtra y ordena tu colección de elementos.</p>
+            </header>
+
+            <!-- Formulario para añadir/editar elementos -->
+            <section class="seccion-formulario" aria-label="Formulario de elementos">
+                <form id="formulario-elemento" class="formulario" novalidate>
+                    <input type="hidden" id="campo-id">
+                    
+                    <div class="grupo-input">
+                        <label for="campo-nombre" class="etiqueta">Nombre</label>
+                        <input 
+                            type="text" 
+                            id="campo-nombre" 
+                            class="campo-texto" 
+                            placeholder="Ej: Grand Theft Auto V"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-categoria" class="etiqueta">Categoría</label>
+                        <select id="campo-categoria" class="campo-select" required aria-required="true">
+                            <option value="Videojuego">Videojuego</option>
+                            <option value="Película">Película</option>
+                            <option value="Libro">Libro</option>
+                            <option value="Música">Música</option>
+                            <option value="">Software</option>
+                        </select>
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-anio" class="etiqueta">Año de Lanzamiento</label>
+                        <input 
+                            type="number" 
+                            id="campo-anio" 
+                            class="campo-texto" 
+                            placeholder="Ej: 2013"
+                            min="1900"
+                            max="2099"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="controles-formulario">
+                        <button type="submit" id="boton-guardar" class="boton boton-primario">
+                            <span class="texto-boton">Añadir Elemento</span>
+                        </button>
+                        <button type="button" id="boton-cancelar" class="boton boton-secundario" style="display: none;">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Controles de filtro y búsqueda -->
+            <section class="seccion-controles" aria-label="Controles de tabla">
+                <div class="grupo-busqueda">
+                    <label for="campo-busqueda" class="etiqueta-oculta">Buscar</label>
+                    <input 
+                        type="text" 
+                        id="campo-busqueda" 
+                        class="campo-texto busqueda" 
+                        placeholder="🔍 Buscar por nombre, categoría o año..."
+                        aria-label="Buscar elementos"
+                    >
+                </div>
+
+                <div class="grupo-filtros">
+                    <select id="filtro-categoria" class="campo-select" aria-label="Filtrar por categoría">
+                        <option value="">Todas las categorías</option>
+                        <option value="Videojuego">Videojuego</option>
+                        <option value="Película">Película</option>
+                        <option value="Libro">Libro</option>
+                        <option value="Música">Música</option>
+                        <option value="Software">Software</option>
+                    </select>
+
+                    <select id="filtro-orden" class="campo-select" aria-label="Ordenar por">
+                        <option value="nombre-asc">Nombre (A-Z)</option>
+                        <option value="nombre-desc">Nombre (Z-A)</option>
+                        <option value="anio-asc">Año (Antiguo a Reciente)</option>
+                        <option value="anio-desc">Año (Reciente a Antiguo)</option>
+                        <option value="categoria-asc">Categoría (A-Z)</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Tabla de elementos -->
+            <section class="seccion-tabla" aria-label="Tabla de elementos">
+                <div class="contenedor-tabla">
+                    <table id="tabla-elementos" class="tabla">
+                        <thead>
+                            <tr>
+                                <th scope="col" data-orden="nombre" class="ordenable">
+                                    Nombre <span class="icono-orden"></span>
+                                </th>
+                                <th scope="col" data-orden="categoria" class="ordenable">
+                                    Categoría <span class="icono-orden"></span>
+                                </th>
+                                <th scope="col" data-orden="anio" class="ordenable">
+                                    Año <span class="icono-orden"></span>
+                                </th>
+                                <th scope="col" class="acciones">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla">
+                            <!-- Las filas se generan dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="mensaje-vacio" class="mensaje-vacio" style="display: none;">
+                    <p>No hay elementos para mostrar. ¡Añade el primero!</p>
+                </div>
+
+                <div class="informacion-tabla">
+                    <span id="contador-elementos">0 elementos</span>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Vinculación de script externo con defer -->
+    <script src="Tabla_Ordenable.js" defer></script>
+</body>
+</html>

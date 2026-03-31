@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 2: Verificador de Palíndromos</title>
+    <!-- Vinculación de hoja de estilos externa -->
+    <link rel="stylesheet" href="Verificador_de_Palíndromos.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta-verificador">
+            <header>
+                <h1>Verificador de Palíndromos</h1>
+                <p class="descripcion">Ingresa una palabra o frase para validar su simetría.</p>
+            </header>
+            
+            <div class="formulario">
+                <label for="entrada-texto" class="etiqueta-oculta">Texto a verificar</label>
+                <input type="text" id="entrada-texto" placeholder="Ej: Reinier, Anita lava la tina..." autocomplete="off">
+                <button id="boton-verificar" type="button">Verificar</button>
+            </div>
+
+            <section id="contenedor-resultado" class="resultado" aria-live="polite">
+                <span class="icono"></span>
+                <p class="mensaje"></p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Vinculación de script externo con defer -->
+    <script src="Verificador_de_Palíndromos.js" defer></script>
+</body>
+</html>

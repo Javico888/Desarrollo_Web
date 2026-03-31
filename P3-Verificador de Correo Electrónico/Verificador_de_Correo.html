@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 3: Validador de Email</title>
+    <!-- Vinculación de hoja de estilos externa -->
+    <link rel="stylesheet" href="Verificador_de_Correo.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta-validador">
+            <header>
+                <h1>Validación de Correo</h1>
+                <p class="descripcion">Verifica el formato de tu dirección de email.</p>
+            </header>
+            
+            <form id="formulario-email" class="formulario" novalidate>
+                <div class="grupo-input">
+                    <label for="campo-email" class="etiqueta">Correo Electrónico</label>
+                    <input 
+                        type="email" 
+                        id="campo-email" 
+                        class="campo-texto" 
+                        placeholder="ejemplo@correo.com" 
+                        autocomplete="email"
+                        aria-describedby="mensaje-validacion"
+                        aria-invalid="false"
+                    >
+                    <span class="icono-estado"></span>
+                </div>
+
+                <div id="mensaje-validacion" class="mensaje" aria-live="polite"></div>
+                
+                <button type="submit" id="boton-validar" class="boton" disabled>
+                    <span class="texto-boton">Validar Ahora</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Vinculación de script externo con defer -->
+    <script src="Verificador_de_Correo.js" defer></script>
+</body>
+</html>

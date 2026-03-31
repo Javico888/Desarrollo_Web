@@ -1,0 +1,370 @@
+/* Definición de variables globales para consistencia visual */
+:root {
+    --color-primario: #24292e;
+    --color-secundario: #0366d6;
+    --color-exito: #28a745;
+    --color-error: #cb2431;
+    --color-fondo: #f6f8fa;
+    --color-tarjeta: #ffffff;
+    --color-texto: #24292e;
+    --color-texto-suave: #586069;
+    --color-borde: #e1e4e8;
+    --fuente-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --transicion: all 0.3s ease;
+    --sombra: 0 3px 6px rgba(140, 149, 159, 0.15);
+}
+
+/* Reset básico y configuración de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tarjeta-buscador {
+    background-color: var(--color-tarjeta);
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.descripcion {
+    color: var(--color-texto-suave);
+    font-size: 0.95rem;
+}
+
+.formulario {
+    margin-bottom: 2rem;
+}
+
+.grupo-input {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.campo-texto {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-borde);
+    border-radius: 6px;
+    outline: none;
+    transition: var(--transicion);
+}
+
+.campo-texto:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+}
+
+.boton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--color-secundario);
+    color: white;
+    transition: var(--transicion);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.boton:hover:not(:disabled) {
+    background-color: #0255b3;
+    transform: translateY(-2px);
+}
+
+.boton:disabled {
+    background-color: var(--color-borde);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Spinner de carga */
+.spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+}
+
+.boton.cargando .spinner {
+    display: block;
+}
+
+.boton.cargando .texto-boton {
+    opacity: 0.7;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mensajes de estado */
+.mensaje {
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+.mensaje.visible {
+    display: block;
+    animation: aparecer 0.3s ease;
+}
+
+.mensaje.error {
+    background-color: rgba(203, 36, 49, 0.1);
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+}
+
+.mensaje.exito {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--color-exito);
+    border: 1px solid var(--color-exito);
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Perfil de usuario */
+.perfil {
+    display: none;
+    margin-bottom: 2rem;
+}
+
+.perfil.visible {
+    display: block;
+    animation: aparecer 0.4s ease;
+}
+
+.tarjeta-perfil {
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 2rem;
+    background-color: var(--color-tarjeta);
+}
+
+.cabecera-perfil {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--color-borde);
+    object-fit: cover;
+}
+
+.info-basica {
+    flex: 1;
+}
+
+.nombre {
+    font-size: 1.5rem;
+    color: var(--color-primario);
+    margin-bottom: 0.3rem;
+}
+
+.enlace {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.enlace:hover {
+    text-decoration: underline;
+}
+
+.estadisticas {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.estadistica {
+    text-align: center;
+}
+
+.estadistica .valor {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.estadistica .etiqueta {
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+}
+
+.detalles-adicionales {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.detalles-adicionales p {
+    color: var(--color-texto-suave);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detalles-adicionales p:empty {
+    display: none;
+}
+
+/* Repositorios */
+.repositorios {
+    display: none;
+}
+
+.repositorios.visible {
+    display: block;
+    animation: aparecer 0.4s ease 0.1s backwards;
+}
+
+.titulo-seccion {
+    font-size: 1.3rem;
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-borde);
+}
+
+.lista-repositorios {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.tarjeta-repositorio {
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    padding: 1.2rem;
+    background-color: var(--color-tarjeta);
+    transition: var(--transicion);
+}
+
+.tarjeta-repositorio:hover {
+    border-color: var(--color-borde);
+    box-shadow: 0 4px 12px rgba(140, 149, 159, 0.2);
+    transform: translateY(-2px);
+}
+
+.tarjeta-repositorio h4 {
+    font-size: 1.1rem;
+    color: var(--color-secundario);
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-repositorio h4 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tarjeta-repositorio h4 a:hover {
+    text-decoration: underline;
+}
+
+.descripcion-repo {
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+    margin-bottom: 1rem;
+    min-height: 2.8rem;
+}
+
+.meta-repo {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+}
+
+.meta-repo span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    .grupo-input {
+        flex-direction: column;
+    }
+    
+    .boton {
+        width: 100%;
+    }
+    
+    .cabecera-perfil {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .estadisticas {
+        justify-content: center;
+    }
+    
+    .lista-repositorios {
+        grid-template-columns: 1fr;
+    }
+}

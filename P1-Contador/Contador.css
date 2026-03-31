@@ -1,0 +1,119 @@
+/* Definición de variables globales para consistencia visual */
+:root {
+    --color-primario: #3498db;
+    --color-secundario: #e74c3c;
+    --color-acento: #2c3e50;
+    --color-fondo: #f4f7f6;
+    --color-tarjeta: #ffffff;
+    --color-texto: #333333;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reset básico de márgenes y configuración de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contenedor {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.tarjeta-contador {
+    background-color: var(--color-tarjeta);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: var(--color-acento);
+    margin-bottom: 1.5rem;
+}
+
+.area-visualizacion {
+    margin-bottom: 2rem;
+}
+
+#valor-conteo {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    display: block;
+}
+
+.etiqueta {
+    font-size: 0.9rem;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.controles {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s;
+    color: white;
+    background-color: var(--color-primario);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button.secundario {
+    background-color: var(--color-acento);
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+}
+
+button#btn-decrementar {
+    background-color: var(--color-secundario);
+}
+
+.estadisticas {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.caja-estadistica span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-acento);
+}
+
+.caja-estadistica p {
+    font-size: 0.8rem;
+    color: #777;
+}

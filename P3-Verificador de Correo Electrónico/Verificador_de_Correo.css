@@ -1,0 +1,217 @@
+/* Definición de variables globales para consistencia visual */
+:root {
+    --color-primario: #4a69bd;
+    --color-exito: #20bf6b;
+    --color-error: #eb3b5a;
+    --color-fondo: #f1f2f6;
+    --color-tarjeta: #ffffff;
+    --color-texto: #2f3542;
+    --color-borde: #dfe4ea;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transicion: all 0.3s ease;
+}
+
+/* Reset básico y configuración de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.contenedor {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tarjeta-validador {
+    background-color: var(--color-tarjeta);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.descripcion {
+    text-align: center;
+    color: #747d8c;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.grupo-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.etiqueta {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-texto);
+}
+
+.campo-texto {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-borde);
+    border-radius: 6px;
+    outline: none;
+    transition: var(--transicion);
+    width: 100%;
+}
+
+.campo-texto:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.1);
+}
+
+/* Estados de validación visual - RETROALIMENTACIÓN EN TIEMPO REAL */
+.campo-texto.valido {
+    border-color: var(--color-exito);
+    background-color: rgba(32, 191, 107, 0.05);
+}
+
+.campo-texto.invalido {
+    border-color: var(--color-error);
+    background-color: rgba(235, 59, 90, 0.05);
+}
+
+/* Icono de estado - visible según validación */
+.icono-estado::after {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: var(--transicion);
+}
+
+.valido ~ .icono-estado::after {
+    content: "✓";
+    color: var(--color-exito);
+    opacity: 1;
+}
+
+.invalido ~ .icono-estado::after {
+    content: "✕";
+    color: var(--color-error);
+    opacity: 1;
+}
+
+/* Mensaje de validación */
+.mensaje {
+    font-size: 0.85rem;
+    min-height: 1.2rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: var(--transicion);
+}
+
+.mensaje.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mensaje.exito {
+    color: var(--color-exito);
+}
+
+.mensaje.error {
+    color: var(--color-error);
+}
+
+/* Botón con estados */
+.boton {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--color-primario);
+    color: white;
+    transition: var(--transicion);
+    margin-top: 0.5rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.boton:hover:not(:disabled) {
+    background-color: #3c55a5;
+    transform: translateY(-2px);
+}
+
+.boton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Estado deshabilitado del botón */
+.boton:disabled {
+    background-color: #b2bec3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Spinner de carga */
+.spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+}
+
+.boton.cargando .spinner {
+    display: block;
+}
+
+.boton.cargando .texto-boton {
+    opacity: 0.7;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+    .tarjeta-validador {
+        padding: 1.5rem;
+    }
+}

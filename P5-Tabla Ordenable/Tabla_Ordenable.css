@@ -1,0 +1,358 @@
+/* Definición de variables globales para consistencia visual */
+:root {
+    --color-primario: #4f46e5;
+    --color-primario-oscuro: #4338ca;
+    --color-exito: #10b981;
+    --color-error: #ef4444;
+    --color-advertencia: #f59e0b;
+    --color-fondo: #f3f4f6;
+    --color-tarjeta: #ffffff;
+    --color-texto: #1f2937;
+    --color-texto-suave: #6b7280;
+    --color-borde: #e5e7eb;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transicion: all 0.3s ease;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radio-borde: 8px;
+}
+
+/* Reset básico y configuración de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tarjeta-principal {
+    background-color: var(--color-tarjeta);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra);
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.descripcion {
+    color: var(--color-texto-suave);
+    font-size: 0.95rem;
+}
+
+/* Secciones */
+.seccion-formulario,
+.seccion-controles,
+.seccion-tabla {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.seccion-tabla {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Formulario */
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.etiqueta {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-texto);
+}
+
+.etiqueta-oculta {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.campo-texto,
+.campo-select {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    outline: none;
+    transition: var(--transicion);
+    width: 100%;
+    font-family: inherit;
+}
+
+.campo-texto:focus,
+.campo-select:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.campo-texto.error,
+.campo-select.error {
+    border-color: var(--color-error);
+}
+
+.mensaje-error {
+    font-size: 0.8rem;
+    color: var(--color-error);
+    min-height: 1.2rem;
+    opacity: 0;
+    transition: var(--transicion);
+}
+
+.mensaje-error.visible {
+    opacity: 1;
+}
+
+.controles-formulario {
+    display: flex;
+    gap: 1rem;
+    grid-column: 1 / -1;
+}
+
+/* Botones */
+.boton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radio-borde);
+    cursor: pointer;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.boton-primario {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.boton-primario:hover {
+    background-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+}
+
+.boton-secundario {
+    background-color: var(--color-texto-suave);
+    color: white;
+}
+
+.boton-secundario:hover {
+    background-color: var(--color-texto);
+}
+
+.boton-edicion {
+    background-color: var(--color-advertencia);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.boton-eliminacion {
+    background-color: var(--color-error);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* Controles de filtro y búsqueda */
+.seccion-controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grupo-busqueda {
+    flex: 1;
+    min-width: 250px;
+}
+
+.grupo-filtros {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.grupo-filtros .campo-select {
+    min-width: 180px;
+}
+
+/* Tabla */
+.contenedor-tabla {
+    overflow-x: auto;
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-borde);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-tarjeta);
+}
+
+.tabla thead {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.tabla th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabla th.ordenable {
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transicion);
+}
+
+.tabla th.ordenable:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+.icono-orden::after {
+    margin-left: 0.5rem;
+    opacity: 0.5;
+}
+
+.tabla th.orden-asc .icono-orden::after {
+    content: "▲";
+    opacity: 1;
+}
+
+.tabla th.orden-desc .icono-orden::after {
+    content: "▼";
+    opacity: 1;
+}
+
+.tabla tbody tr {
+    border-bottom: 1px solid var(--color-borde);
+    transition: var(--transicion);
+}
+
+.tabla tbody tr:hover {
+    background-color: rgba(79, 70, 229, 0.05);
+}
+
+.tabla tbody tr.edicion {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.tabla td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.tabla td.acciones {
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Mensaje vacío e información */
+.mensaje-vacio {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-texto-suave);
+}
+
+.informacion-tabla {
+    padding-top: 1rem;
+    text-align: right;
+    color: var(--color-texto-suave);
+    font-size: 0.9rem;
+}
+
+/* Animaciones */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tabla tbody tr {
+    animation: aparecer 0.3s ease;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+    
+    .seccion-controles {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .grupo-filtros {
+        flex-direction: column;
+    }
+    
+    .grupo-filtros .campo-select {
+        width: 100%;
+    }
+    
+    .controles-formulario {
+        flex-direction: column;
+    }
+    
+    .boton {
+        width: 100%;
+    }
+    
+    .tabla th,
+    .tabla td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}

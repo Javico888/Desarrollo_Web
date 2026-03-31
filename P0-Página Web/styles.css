@@ -1,0 +1,617 @@
+/* --- REINICIO Y VARIABLES GLOBALES --- */
+:root {
+    --color-fondo: #050505;
+    --color-tarjeta: #0f0f0f;
+    --rojo-primario: #ff0000;
+    --texto-blanco: #ffffff;
+    --texto-gris: #a1a1a1;
+    --fuente-titulos: 'Oswald', sans-serif;
+    --fuente-cuerpo: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 1. Degradado radial */
+    background: radial-gradient(circle at center, #09090b 0%, #09090b 100%);
+    
+    /* 2. Truco PRO: Fondo fijo */
+    background-attachment: fixed;
+    
+    /* 3. Asegurar que cubra toda la altura */
+    min-height: 100vh;
+    color: var(--texto-blanco);
+    font-family: var(--fuente-cuerpo);
+    line-height: 1.6;
+    margin: 0; 
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* Configuración básica para los iconos SVG */
+svg {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- BARRA DE NAVEGACIÓN --- */
+.barra-navegacion {
+    display: flex;
+    /* Se elimina justify-content para alinear a la derecha con margen automático */
+    align-items: center;
+    padding: 20px 40px;
+    position: relative;
+    z-index: 100;
+    background: transparent;
+}
+
+.caja-logo {
+    background-color: var(--rojo-primario);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-radius: 2px;
+}
+
+.enlaces-nav {
+    display: flex;
+    gap: 30px;
+    margin-left: auto; /* ESTO ALINEA TODO A LA DERECHA */
+}
+
+.enlaces-nav a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    padding-bottom: 5px;
+    font-family: var(--fuente-titulos);
+    letter-spacing: 1px;
+}
+
+.enlaces-nav a.activo {
+    border-bottom: 2px solid var(--rojo-primario);
+}
+
+.acciones-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 25px; /* Separación extra del menú */
+}
+
+.btn-admin {
+    background-color: var(--rojo-primario);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: var(--fuente-titulos);
+    letter-spacing: 0.5px;
+}
+
+.btn-idioma {
+    background: #222;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--fuente-titulos);
+}
+
+.icono-pequeno {
+    width: 14px;
+    height: 14px;
+}
+
+.menu-hamburguesa { display: none; cursor: pointer; color: white; margin-left: auto; }
+.icono-grande { width: 30px; height: 30px; }
+
+/* --- SECCIÓN PRINCIPAL (HERO) --- */
+.seccion-principal {
+    text-align: center;
+    padding: 80px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.etiqueta-pill {
+    background-color: #1a1a1a;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+}
+
+.etiqueta-pill .punto {
+    width: 6px;
+    height: 6px;
+    background-color: var(--rojo-primario);
+    border-radius: 50%;
+}
+
+.seccion-principal h1 {
+    /* 1. Asegurar la fuente Oswald (que es estilo "cartel") */
+    font-family: 'Oswald', sans-serif;
+    
+    /* 2. Grosor máximo */
+    font-weight: 700;
+    
+    /* 3. Tamaño grande */
+    font-size: 5.5rem; /* Ajusta este número si lo quieres más grande */
+    
+    /* 4. Mayúsculas obligatorias */
+    text-transform: uppercase;
+    
+    /* 5. Altura de línea apretada (para que no se separen los renglones) */
+    line-height: 0.85;
+    
+    /* 6. Color grisáceo */
+    color: #979798;
+    
+    /* --- AQUÍ ESTÁN LOS TRUCOS VISUALES --- */
+    
+    /* 7. "letter-spacing": Números negativos juntan las letras entre sí */
+    letter-spacing: -4px; 
+    
+    /* 8. "transform: scaleY": ESTIRA la letra hacia arriba sin engordarla. 
+       El 1.3 significa "un 30% más alta de lo normal" */
+    transform: scaleY(1.1); 
+    
+    /* 9. Margen ajustado (al estirarla, ocupa más espacio vertical) */
+    margin-bottom: 40px; 
+    margin-top: 20px;
+    max-width: 900px;
+}
+
+.subtexto-principal {
+    color: var(--texto-gris);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- SECCIÓN DE ESTADÍSTICAS --- */
+.seccion-estadisticas {
+    padding: 40px 0 80px;
+    background-color: #101012; 
+}
+
+.rejilla-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.tarjeta-estadistica {
+    /* CAMBIO AQUÍ: Degradado lineal */
+    /* Sintaxis: linear-gradient(dirección, color-inicial, color-final) */
+    background: linear-gradient(to bottom right, #151515, #211619);
+
+    /* El resto de propiedades se mantienen igual */
+    padding: 40px 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1.5px solid #222224;
+    transition: transform 0.3s ease;
+}
+.tarjeta-estadistica:hover {
+    transform: translateY(-0px); /* Se eleva un poquito */
+    background: linear-gradient(to bottom right, #18171a, #2b1519); /* El rojo se hace un poco más intenso */
+    border-color: #2e2e30; /* El borde se pone rojo */
+}
+
+.icono-stats {
+    width: 32px;
+    height: 32px;
+    color: var(--rojo-primario);
+    margin-bottom: 15px;
+}
+
+.tarjeta-estadistica h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.tarjeta-estadistica span {
+    color: #666;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* --- SECCIÓN POR QUÉ NOSOTROS --- */
+.por-que-nosotros {
+    padding: 80px 0;
+}
+
+.cabecera-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+
+.cabecera-seccion h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    max-width: 600px;
+    line-height: 1;
+}
+
+.descripcion-cabecera {
+    max-width: 300px;
+    text-align: right;
+    font-size: 0.75rem;
+    color: #666;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace; 
+}
+
+.rejilla-caracteristicas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.tarjeta-caracteristica {
+    /*background-color: var(--color-tarjeta);*/
+    background: linear-gradient(to bottom right, #1a080a, #0a090b);
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 0.4s ease;
+    transition-delay: 0.2s;
+}
+.tarjeta-caracteristica:hover {
+    transform: translateY(-3px); /* Se eleva un poquito */
+    background: linear-gradient(to bottom right, #250b0e, #110f13); /* El rojo se hace un poco más intenso */
+}
+
+.caja-icono {
+    background-color: #2a0505; 
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+}
+
+.caja-icono svg {
+    width: 28px;
+    height: 28px;
+}
+
+.texto-caracteristica h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.texto-caracteristica p {
+    color: var(--texto-gris);
+    font-size: 0.95rem;
+}
+
+/* --- SECCIÓN DE CONTACTO --- */
+.seccion-contacto {
+    padding: 60px 0 100px;
+}
+
+.rejilla-contacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contenedor-formulario h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 3rem;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.contenedor-formulario .subtitulo {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+.grupo-input {
+    margin-bottom: 25px;
+}
+
+.grupo-input label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #444;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.grupo-input input, 
+.grupo-input textarea {
+    width: 100%;
+    background-color: #111;
+    border: 1px solid #222;
+    padding: 15px;
+    color: #fff;
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+.grupo-input input:focus, 
+.grupo-input textarea:focus {
+    outline: none;
+    border-color: #444;
+}
+
+.grupo-input textarea {
+    height: 100px;
+    resize: none;
+}
+
+.btn-enviar {
+    background-color: var(--rojo-primario);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Contacto lado derecho */
+.contenedor-info-directa h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.tarjeta-info {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #222;
+}
+
+.icono-info {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: var(--rojo-primario);
+}
+
+.texto-rojo { color: var(--rojo-primario); }
+
+.detalles-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.detalles-info .etiqueta {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #444;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.detalles-info .valor {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.rejilla-telefonos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.tarjeta-deck {
+    background-color: #0f0f0f;
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid #222;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.tarjeta-deck h4 {
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.tarjeta-deck p {
+    color: #888;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 2;
+    max-width: 80%;
+}
+
+.icono-fondo {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    width: 100px;
+    height: 100px;
+    color: #1a1a1a;
+    z-index: 1;
+    transform: rotate(-10deg);
+}
+
+/* --- PIE DE PÁGINA --- */
+footer {
+    padding: 40px 20px;
+    border-top: 1px solid #1a1a1a;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.contenido-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.logo-footer {
+    margin-bottom: 0;
+}
+
+.iconos-sociales {
+    position: absolute;
+    right: 0;
+}
+
+.iconos-sociales a {
+    width: 35px;
+    height: 35px;
+    background: #111;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: 10px;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.iconos-sociales svg {
+    width: 16px;
+    height: 16px;
+}
+
+.iconos-sociales a:hover {
+    background: var(--rojo-primario);
+    color: white;
+}
+
+.derechos {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* --- RESPONSIVE / MÓVIL (Android) --- */
+@media (max-width: 992px) {
+    .rejilla-caracteristicas, .rejilla-contacto {
+        grid-template-columns: 1fr;
+    }
+    
+    .cabecera-seccion {
+        flex-direction: column;
+    }
+    
+    .descripcion-cabecera {
+        text-align: left;
+        margin-top: 20px;
+    }
+    
+    .rejilla-telefonos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .enlaces-nav, .acciones-nav {
+        display: none; /* Oculto en móvil por simplicidad */
+    }
+    
+    .menu-hamburguesa {
+        display: block;
+    }
+    
+    .seccion-principal h1 {
+        font-size: 3rem;
+    }
+    
+    .rejilla-estadisticas {
+        grid-template-columns: 1fr;
+    }
+    
+    .cabecera-seccion h2 {
+        font-size: 2.5rem;
+    }
+    
+    .contenedor-formulario h2 {
+        font-size: 2rem;
+    }
+    
+    .contenido-footer {
+        flex-direction: column;
+    }
+    
+    .iconos-sociales {
+        position: relative;
+        margin-top: 20px;
+    }
+}

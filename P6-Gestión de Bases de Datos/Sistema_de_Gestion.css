@@ -1,0 +1,538 @@
+/* Definición de variables globales para consistencia visual */
+:root {
+    --color-primario: #2563eb;
+    --color-primario-oscuro: #1d4ed8;
+    --color-exito: #10b981;
+    --color-error: #ef4444;
+    --color-advertencia: #f59e0b;
+    --color-peligro: #dc2626;
+    --color-fondo: #f3f4f6;
+    --color-tarjeta: #ffffff;
+    --color-texto: #1f2937;
+    --color-texto-suave: #6b7280;
+    --color-borde: #e5e7eb;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transicion: all 0.3s ease;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --sombra-elevada: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --radio-borde: 8px;
+}
+
+/* Reset básico y configuración de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.contenedor {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tarjeta-principal {
+    background-color: var(--color-tarjeta);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra);
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.descripcion {
+    color: var(--color-texto-suave);
+    font-size: 0.95rem;
+}
+
+/* Secciones */
+.seccion-formulario,
+.seccion-estadisticas,
+.seccion-controles,
+.seccion-listado {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.seccion-listado {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Formulario */
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.etiqueta {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-texto);
+}
+
+.etiqueta-oculta {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.campo-texto,
+.campo-select {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    outline: none;
+    transition: var(--transicion);
+    width: 100%;
+    font-family: inherit;
+}
+
+.campo-texto:focus,
+.campo-select:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.campo-texto.error {
+    border-color: var(--color-error);
+}
+
+/* NUEVO: Estilo para input de archivo */
+.campo-archivo {
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+    padding: 0.5rem 0;
+    border: 1px dashed var(--color-borde);
+    border-radius: var(--radio-borde);
+    background-color: #f9fafb;
+    width: 100%;
+}
+
+.campo-archivo:hover {
+    border-color: var(--color-primario);
+    background-color: #eff6ff;
+}
+
+.mensaje-error {
+    font-size: 0.8rem;
+    color: var(--color-error);
+    min-height: 1.2rem;
+    opacity: 0;
+    transition: var(--transicion);
+}
+
+.mensaje-error.visible {
+    opacity: 1;
+}
+
+.controles-formulario {
+    display: flex;
+    gap: 1rem;
+    grid-column: 1 / -1;
+}
+
+/* Botones */
+.boton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radio-borde);
+    cursor: pointer;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.boton-primario {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.boton-primario:hover {
+    background-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+}
+
+.boton-secundario {
+    background-color: var(--color-texto-suave);
+    color: white;
+}
+
+.boton-secundario:hover {
+    background-color: var(--color-texto);
+}
+
+.boton-peligro {
+    background-color: var(--color-peligro);
+    color: white;
+}
+
+.boton-peligro:hover {
+    background-color: #b91c1c;
+}
+
+.boton-edicion {
+    background-color: var(--color-advertencia);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.boton-eliminacion {
+    background-color: var(--color-error);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* Estadísticas */
+.seccion-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.tarjeta-estadistica {
+    background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--radio-borde);
+    text-align: center;
+    box-shadow: var(--sombra);
+}
+
+.valor-estadistica {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.etiqueta-estadistica {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Controles de búsqueda */
+.seccion-controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grupo-busqueda {
+    flex: 1;
+    min-width: 250px;
+}
+
+.grupo-filtros {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.grupo-filtros .campo-select {
+    min-width: 200px;
+}
+
+/* Tabla */
+.contenedor-tabla {
+    overflow-x: auto;
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-borde);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-tarjeta);
+}
+
+.tabla thead {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.tabla th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabla tbody tr {
+    border-bottom: 1px solid var(--color-borde);
+    transition: var(--transicion);
+}
+
+.tabla tbody tr:hover {
+    background-color: rgba(37, 99, 235, 0.05);
+}
+
+.tabla tbody tr.edicion {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.tabla td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.tabla td.acciones {
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Foto de empleado */
+.foto-empleado {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-borde);
+}
+
+.foto-empleado.sin-foto {
+    background-color: var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Mensaje vacío */
+.mensaje-vacio {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-texto-suave);
+}
+
+.icono-vacio {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.informacion-listado {
+    padding-top: 1rem;
+    text-align: right;
+    color: var(--color-texto-suave);
+    font-size: 0.9rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: aparecer 0.3s ease;
+}
+
+.modal-contenido {
+    background-color: var(--color-tarjeta);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-elevada);
+    width: 90%;
+    max-width: 450px;
+    animation: deslizar 0.3s ease;
+}
+
+.modal-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.modal-cabecera h2 {
+    font-size: 1.3rem;
+    color: var(--color-texto);
+}
+
+.boton-cerrar-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-texto-suave);
+    transition: var(--transicion);
+}
+
+.boton-cerrar-modal:hover {
+    color: var(--color-texto);
+}
+
+.modal-cuerpo {
+    padding: 1.5rem;
+}
+
+.modal-cuerpo p {
+    margin-bottom: 1rem;
+}
+
+.advertencia {
+    color: var(--color-advertencia);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.modal-pie {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--color-borde);
+}
+
+/* Animaciones */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes deslizar {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerFila {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tabla tbody tr {
+    animation: aparecerFila 0.3s ease;
+}
+
+/* Mensajes toast */
+.mensaje-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 2rem;
+    border-radius: var(--radio-borde);
+    color: white;
+    font-weight: 600;
+    z-index: 1001;
+    animation: deslizar 0.3s ease;
+}
+
+.mensaje-toast.exito {
+    background-color: var(--color-exito);
+}
+
+.mensaje-toast.error {
+    background-color: var(--color-error);
+}
+
+.mensaje-toast.advertencia {
+    background-color: var(--color-advertencia);
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+    
+    .seccion-controles {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .grupo-filtros {
+        flex-direction: column;
+    }
+    
+    .grupo-filtros .campo-select {
+        width: 100%;
+    }
+    
+    .controles-formulario {
+        flex-direction: column;
+    }
+    
+    .boton {
+        width: 100%;
+    }
+    
+    .tabla th,
+    .tabla td {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .tabla td.acciones {
+        flex-direction: column;
+    }
+    
+    .seccion-estadisticas {
+        grid-template-columns: 1fr;
+    }
+}

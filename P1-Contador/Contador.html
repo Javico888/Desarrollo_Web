@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 1: Contador Inteligente</title>
+    <!-- Vinculación de hoja de estilos externa -->
+    <link rel="stylesheet" href="Contador.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta-contador">
+            <header>
+                <h1>Contador de Eventos</h1>
+            </header>
+            
+            <div class="area-visualizacion">
+                <span id="valor-conteo">0</span>
+                <p class="etiqueta">Valor Actual</p>
+            </div>
+
+            <div class="controles">
+                <button id="btn-decrementar" type="button" aria-label="Disminuir contador">-</button>
+                <button id="btn-reiniciar" type="button" class="secundario" aria-label="Restablecer contador">Reiniciar</button>
+                <button id="btn-incrementar" type="button" aria-label="Aumentar contador">+</button>
+            </div>
+
+            <section class="estadisticas">
+                <div class="caja-estadistica">
+                    <span id="clics-incremento">0</span>
+                    <p>Clics (+)</p>
+                </div>
+                <div class="caja-estadistica">
+                    <span id="clics-decremento">0</span>
+                    <p>Clics (-)</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Vinculación de script externo con defer para carga diferida -->
+    <script src="Contador.js" defer></script>
+</body>
+</html>

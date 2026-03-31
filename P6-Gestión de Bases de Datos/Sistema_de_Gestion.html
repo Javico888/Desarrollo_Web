@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 6: Gestión de Empleados</title>
+    <!-- Vinculación de hoja de estilos externa -->
+    <link rel="stylesheet" href="Sistema_de_Gestion.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="tarjeta-principal">
+            <header>
+                <h1>Sistema de Gestión de Empleados</h1>
+                <p class="descripcion">Administra la base de datos de empleados de tu organización.</p>
+            </header>
+
+            <!-- Formulario para agregar/editar empleados -->
+            <section class="seccion-formulario" aria-label="Formulario de empleados">
+                <form id="formulario-empleado" class="formulario" novalidate>
+                    <input type="hidden" id="campo-id">
+                    
+                    <div class="grupo-input">
+                        <label for="campo-nombre" class="etiqueta">Nombre</label>
+                        <input 
+                            type="text" 
+                            id="campo-nombre" 
+                            class="campo-texto" 
+                            placeholder="Ej: Armando"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-apellido" class="etiqueta">Apellido</label>
+                        <input 
+                            type="text" 
+                            id="campo-apellido" 
+                            class="campo-texto" 
+                            placeholder="Ej: Mesa"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-email" class="etiqueta">Correo Electrónico</label>
+                        <input 
+                            type="email" 
+                            id="campo-email" 
+                            class="campo-texto" 
+                            placeholder="ejemplo@empresa.com"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-telefono" class="etiqueta">Teléfono</label>
+                        <input 
+                            type="tel" 
+                            id="campo-telefono" 
+                            class="campo-texto" 
+                            placeholder="+53 56591555"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-salario" class="etiqueta">Salario ($)</label>
+                        <input 
+                            type="number" 
+                            id="campo-salario" 
+                            class="campo-texto" 
+                            placeholder="Ej: 12500"
+                            min="0"
+                            step="0.01"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-fecha-nacimiento" class="etiqueta">Fecha de Nacimiento</label>
+                        <input 
+                            type="date" 
+                            id="campo-fecha-nacimiento" 
+                            class="campo-texto" 
+                            required
+                            aria-required="true"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="campo-imagen" class="etiqueta">URL de Imagen o Archivo (Opcional)</label>
+                        <input 
+                            type="url" 
+                            id="campo-imagen" 
+                            class="campo-texto" 
+                            placeholder="https://ejemplo.com/foto.jpg"
+                        >
+                        <!-- NUEVO: Input para subir archivo local -->
+                        <input 
+                            type="file" 
+                            id="campo-archivo-imagen" 
+                            class="campo-archivo" 
+                            accept="image/*"
+                            aria-label="Subir imagen desde dispositivo"
+                        >
+                        <span class="mensaje-error"></span>
+                    </div>
+
+                    <div class="controles-formulario">
+                        <button type="submit" id="boton-guardar" class="boton boton-primario">
+                            <span class="texto-boton">Agregar Empleado</span>
+                        </button>
+                        <button type="button" id="boton-cancelar" class="boton boton-secundario" style="display: none;">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Estadísticas de empleados -->
+            <section class="seccion-estadisticas" aria-label="Estadísticas">
+                <div class="tarjeta-estadistica">
+                    <span class="valor-estadistica" id="total-empleados">0</span>
+                    <span class="etiqueta-estadistica">Total Empleados</span>
+                </div>
+                <div class="tarjeta-estadistica">
+                    <span class="valor-estadistica" id="salario-promedio">$0</span>
+                    <span class="etiqueta-estadistica">Salario Promedio</span>
+                </div>
+                <div class="tarjeta-estadistica">
+                    <span class="valor-estadistica" id="edad-promedio">0</span>
+                    <span class="etiqueta-estadistica">Edad Promedio</span>
+                </div>
+            </section>
+
+            <!-- Buscador y filtros -->
+            <section class="seccion-controles" aria-label="Controles de búsqueda">
+                <div class="grupo-busqueda">
+                    <label for="campo-busqueda" class="etiqueta-oculta">Buscar empleado</label>
+                    <input 
+                        type="text" 
+                        id="campo-busqueda" 
+                        class="campo-texto busqueda" 
+                        placeholder="🔍 Buscar por nombre, email o teléfono..."
+                        aria-label="Buscar empleados"
+                    >
+                </div>
+
+                <div class="grupo-filtros">
+                    <select id="filtro-orden" class="campo-select" aria-label="Ordenar por">
+                        <option value="nombre-asc">Nombre (A-Z)</option>
+                        <option value="nombre-desc">Nombre (Z-A)</option>
+                        <option value="salario-asc">Salario (Menor a Mayor)</option>
+                        <option value="salario-desc">Salario (Mayor a Menor)</option>
+                        <option value="fecha-asc">Fecha Nacimiento (Antiguo a Reciente)</option>
+                        <option value="fecha-desc">Fecha Nacimiento (Reciente a Antiguo)</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Tabla/Listado de empleados -->
+            <section class="seccion-listado" aria-label="Lista de empleados">
+                <div class="contenedor-tabla">
+                    <table id="tabla-empleados" class="tabla">
+                        <thead>
+                            <tr>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Nombre Completo</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Salario</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col" class="acciones">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla">
+                            <!-- Las filas se generan dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="mensaje-vacio" class="mensaje-vacio" style="display: none;">
+                    <div class="icono-vacio">📋</div>
+                    <p>No hay empleados registrados. ¡Agrega el primero!</p>
+                </div>
+
+                <div class="informacion-listado">
+                    <span id="contador-empleados">0 empleados mostrados</span>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Modal de confirmación -->
+    <div id="modal-confirmacion" class="modal" style="display: none;" aria-hidden="true">
+        <div class="modal-contenido">
+            <div class="modal-cabecera">
+                <h2>Confirmar Eliminación</h2>
+                <button type="button" class="boton-cerrar-modal" aria-label="Cerrar modal">&times;</button>
+            </div>
+            <div class="modal-cuerpo">
+                <p>¿Estás seguro de que deseas eliminar a <strong id="nombre-empleado-eliminar"></strong>?</p>
+                <p class="advertencia">Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-pie">
+                <button type="button" id="boton-cancelar-modal" class="boton boton-secundario">Cancelar</button>
+                <button type="button" id="boton-confirmar-eliminar" class="boton boton-peligro">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vinculación de script externo con defer -->
+    <script src="Sistema_de_Gestion.js" defer></script>
+</body>
+</html>
